@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>フリマサイト</title>
+    <link rel="stylesheet" href="stylesheet.css">
+</head>
+<body>
+    <header>
+        <h1>フリマサイト</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">ホーム</a></li>
+                <li><a href="product-list.html">商品一覧</a></li>
+                <li><a href="sell.html">出品する</a></li>
+                <li><a href="mypage.html">マイページ</a></li>
+
+
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <h1>選択されたアイテム:</h1>
+    <ul id="selectedItems"></ul>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const selectedItemsParam = urlParams.get('selected');
+            const selectedItems = selectedItemsParam ? selectedItemsParam.split(',') : [];
+
+            const selectedItemsList = document.getElementById('selectedItems');
+            selectedItems.forEach(function(item) {
+                const li = document.createElement('li');
+                li.textContent = item;
+                selectedItemsList.appendChild(li);
+            });
+        });
+    </script>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 フリマサイト</p>
+    </footer>
+</body>
+</html>

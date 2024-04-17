@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>フリマサイト - 送信されたデータ</title>
+    <link rel="stylesheet" href="stylesheet.css">
+</head>
+<body>
+    <header>
+        <h1>フリマサイト - 送信されたデータ</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">ホーム</a></li>
+                <li><a href="product-list.html">商品一覧</a></li>
+                <li><a href="sell.html">出品する</a></li>
+                <li><a href="mypage.html">マイページ</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <h2>選択された商品と金額</h2>
+        <ul id="selectedItemsList"></ul>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 フリマサイト</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var urlParams = new URLSearchParams(window.location.search);
+            var selectedItemsList = document.getElementById("selectedItemsList");
+
+            if (urlParams.has("level") && urlParams.has("priceInput")) {
+                var selectedItems = urlParams.getAll("level");
+                var priceInput = urlParams.get("priceInput");
+                selectedItems.forEach(function(item) {
+                    var li = document.createElement("li");
+                    li.textContent = item + " - 金額: " + priceInput;
+                    selectedItemsList.appendChild(li);
+                });
+            } else {
+                var li = document.createElement("li");
+                li.textContent = "商品が選択されていません。";
+                selectedItemsList.appendChild(li);
+            }
+        });
+    </script>
+</body>
+</html>
